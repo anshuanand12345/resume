@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/framer-motion/dist/framer-motion.umd.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Manufacturing+Consent&family=Michroma&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sriracha&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+<style>
+    html {
+  scroll-behavior: smooth;
+}
+    .work-card{
+        width: 250px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+    .work-card:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;  
+          }
+
+          .fade-in {
+    transition: all 2s ease;
+  }
+          
+  @keyframes oscillate {
+    0%, 100% {
+      transform: rotate(-1deg);
+    }
+    50% {
+      transform: rotate(1deg);
+    }
+  }
+
+  .animate-oscillate {
+    animation: oscillate 2s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  section {
+    font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+section {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ptext{
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+ 
+}
+
+
+/* CSS */
+.button-75 {
+  align-items: center;
+  background-image: linear-gradient(135deg, #7dc5ff 40%, #80c1f6);
+  border: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: "Codec cold",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  height: 54px;
+  justify-content: center;
+  letter-spacing: .4px;
+  line-height: 1;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-75:active {
+  outline: 0;
+}
+
+.button-75:hover {
+  outline: 0;
+}
+
+.button-75 span {
+  transition: all 200ms;
+}
+
+.button-75:hover span {
+  transform: scale(.9);
+  opacity: .75;
+}
+
+
+  .nav-link {
+    position: relative;
+    font-weight: 500;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background-color: #3B82F6; /* Tailwind's blue-500 */
+    transition: width 0.3s ease-in-out;
+  }
+
+  .nav-link:hover {
+    color: #3B82F6;
+    transform: translateY(-2px) scale(1.05);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Slide-in effect on mount */
+  .motion-item {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    font-size: larger;
+  }
+
+  .motion-item.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+@media screen and (max-width: 991px) {
+  .button-75 {
+    font-size: 15px;
+    height: 50px;
+  }
+
+  .button-75 span {
+    line-height: 50px;
+  }
+}
+
+</style>
+</head>
+
+
+<body class="bg-blue-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+      <div class="container mx-auto py-2 px-6 flex items-center justify-between">
+        <!-- Logo / Brand -->
+        <div class="text-xl font-bold text-gray-800"><span class="text-blue-500">My</span>Portfolio</div>
+    
+        <!-- Hamburger Icon (Mobile Only) -->
+        <button id="menu-toggle" class="md:hidden text-gray-800 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+    
+        <!-- Navigation Menu -->
+        <nav id="nav-menu" class="hidden md:block absolute md:static bg-white top-16 left-0 w-full md:w-auto px-6 md:px-0 shadow-md md:shadow-none">
+          <ul class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 text-center md:text-left py-4 md:py-0">
+            <li class="motion-item"><a href="#" class="nav-link block">Home</a></li>
+            <li class="motion-item"><a href="#about" class="nav-link block">About</a></li>
+            <li class="motion-item"><a href="#skill" class="nav-link block">Skill</a></li>
+            <li class="motion-item"><a href="#work" class="nav-link block">Work</a></li>
+            <li class="motion-item"><a href="#Experience" class="nav-link block">Experience</a></li>
+            <li class="motion-item"><a href="#contact" class="nav-link block">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between py-12 px-4 md:px-6 border bg-white shadow-lg mt-16 md:mt-32">
+  
+      <!-- Left Content -->
+      <div id="leftContent" class="w-full md:max-w-xl text-center md:text-left px-2 md:px-4 opacity-0 translate-x-[-50px] transition-all duration-1000">
+        <h2 class="text-2xl md:text-3xl font-bold">
+          Hi, I am <br>
+          <span class="text-blue-500 text-4xl md:text-5xl"></span>
+        </h2>
+        <p class="text-black mb-4 font-bold text-xl md:text-2xl">Full-Stack Developer!</p>
+        <p class="text-gray-500 mb-6 ptext">
+          I am a passionate frontend developer with expertise in crafting intuitive and visually appealing web interfaces. With a strong focus on creating seamless user experiences, I specialize in transforming ideas into interactive and responsive designs. Leveraging modern technologies like HTML, CSS, JavaScript, and frameworks, I ensure performance, accessibility, and functionality go hand in hand.
+        </p>
+        <div class="space-x-0 md:space-x-4 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
+          <a href="./img_pdf/Anshu_Anand_Resume.pdf" style="text-decoration: none;">
+          <button class="button-75" role="button">
+            <span class="text">Download CV</span>
+          </button>
+        </a>
+        </div>
+      </div>
+    
+      <!-- Right Image -->
+      <div id="rightImage" class="w-full md:w-auto mt-6 md:mt-0 md:ml-10 opacity-0 translate-x-[50px] transition-all duration-1000 flex justify-center">
+        <img src="./img_pdf/profilepic.jpg" alt="profile" class="w-48 h-48 md:w-96 md:h-96 rounded-full object-cover shadow-md">
+      </div>
+      
+    </section>
+    
+
+
+    <!-- About Me Section -->
+    <section class="container mx-auto py-12 px-6 fade-in" id="about">
+        <h2 class="text-3xl font-bold mb-8">About Me</h2>
+        <div class="gap-8">
+            <div>
+              <ul class="text-gray-600 mb-4 ptext list-disc pl-5 space-y-2">
+                <li>
+                  <span class="font-bold text-blue-500">Frontend Developer</span> with a strong foundation in building responsive, user-friendly interfaces using 
+                  <span class="font-bold text-blue-500">JavaScript</span>, <span class="font-bold text-blue-500">React.js</span>, <span class="font-bold text-blue-500">HTML</span>, and <span class="font-bold text-blue-500">CSS</span>.
+                </li>
+                <li>
+                  Proficient in modern styling frameworks like <span class="font-bold text-blue-500">Tailwind CSS</span> and <span class="font-bold text-blue-500">Bootstrap</span> for creating elegant and consistent UI.
+                </li>
+                <li>
+                  Experienced in using <span class="font-bold text-blue-500">Figma</span> to convert design concepts into pixel-perfect web pages.
+                </li>
+                <li>
+                  Skilled in <span class="font-bold text-blue-500">Next.js</span> for server-side rendering and routing, and <span class="font-bold text-blue-500">Redux</span> for efficient state management.
+                </li>
+                <li>
+                  Backend-capable with <span class="font-bold text-blue-500">Node.js</span>, <span class="font-bold text-blue-500">Express.js</span>, and <span class="font-bold text-blue-500">Python</span>; experienced in handling databases with <span class="font-bold text-blue-500">MongoDB</span> and <span class="font-bold text-blue-500">Mongoose</span>.
+                </li>
+                <li>
+                  Experienced in automated testing using <span class="font-bold text-blue-500">Playwright</span> and <span class="font-bold text-blue-500">Robot Framework</span> (specializing in the <span class="font-bold text-blue-500">Browser library</span>) to ensure software quality.
+                </li>
+                <li>
+                  Passionate about performance optimization and delivering seamless, scalable, and accessible modern web solutions.
+                </li>
+              </ul>
+              
+              
+                    <div class="flex flex-col md:flex-row justify-evenly">
+                      <!-- Name -->
+                      <div class="relative mb-8 flex flex-col items-center">
+                        <div class="bg-blue-500 text-white font-bold px-4 py-2 rounded-lg shadow-md ptext">
+                          Name
+                        </div>
+                        <!-- Chain -->
+                        <div class="w-1 h-10 bg-gray-300"></div>
+                        <!-- Oscillating Value -->
+                        <div class="bg-gray-100 text-gray-700 font-medium px-6 py-2 rounded-lg border shadow-md animate-oscillate text-2xl">
+                          Anshu Anand
+                        </div>
+                      </div>
+                    
+                      <!-- Phone -->
+                      <div class="relative mb-8 flex flex-col items-center">
+                        <div class="bg-blue-500 text-white font-bold px-4 py-2 rounded-lg shadow-md ptext">
+                          Phone
+                        </div>
+                        <!-- Chain -->
+                        <div class="w-1 h-10 bg-gray-300"></div>
+                        <!-- Oscillating Value -->
+                        <div class="bg-gray-100 text-gray-700 font-medium px-6 py-2 rounded-lg border shadow-md animate-oscillate text-2xl">
+                          9880627154
+                        </div>
+                      </div>
+                    
+                      <!-- Email -->
+                      <div class="relative flex flex-col items-center">
+                        <div class="bg-blue-500 text-white font-bold px-4 py-2 rounded-lg shadow-md ptext">
+                          Email
+                        </div>
+                        <!-- Chain -->
+                        <div class="w-1 h-10 bg-gray-300"></div>
+                        <!-- Oscillating Value -->
+                        <div class="bg-gray-100 text-gray-700 font-medium px-6 py-2 rounded-lg border shadow-md animate-oscillate text-2xl">
+                          anshu.anand12345@gmail.com
+                        </div>
+                      </div>
+                    </div>
+                    
+                      
+                <h3 class="text-xl font-bold mb-4 mt-8">My Interests</h3>
+                <div class="flex space-x-4 ptext">
+                    <span class="bg-blue-100 text-blue-500 px-4 py-2 rounded">Music</span>
+                    <span class="bg-blue-100 text-blue-500 px-4 py-2 rounded">Travel</span>
+                    <span class="bg-blue-100 text-blue-500 px-4 py-2 rounded">Movie</span>
+                    <span class="bg-blue-100 text-blue-500 px-4 py-2 rounded">Cricket</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="bg-white py-12 fade-in" id="skill">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center">Why Choose Me</h2>
+              <h5 class="text-xl font-bold mb-8 text-center text-blue-500">Language</h5>
+              <div class="flex flex-col md:flex-row justify-center md:justify-evenly items-center">
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                    <img class="w-full h-48 object-cover bg-white" src="./img_pdf/html.png" alt="Card image cap">
+                    <div class="p-4">
+                      <h5 class="text-3xl font-semibold mb-2 text-center ptext">HTML</h5>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                  <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                    <img class="w-full h-48 object-cover bg-white" src="img_pdf/css.png" alt="Card image cap">
+                    <div class="p-4">
+                      <h5 class="text-3xl font-semibold mb-2 text-center ptext">CSS</h5>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                  <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                    <img class="w-full h-48 object-cover bg-white" src="img_pdf/js.png" alt="Card image cap">
+                    <div class="p-4">
+                      <h5 class="text-3xl font-semibold mb-2 text-center ptext">JavaScript</h5>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                  <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                    <img class="w-full h-48 object-cover bg-white" src="img_pdf/python.png" alt="Card image cap">
+                    <div class="p-4">
+                      <h5 class="text-3xl font-semibold mb-2 text-center ptext">Python</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+            <h5 class="text-xl font-bold mb-8 text-center text-blue-500 mt-8">Frameworks</h5>
+            <div class="flex flex-col md:flex-row justify-center md:justify-evenly items-center">
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/nextjs.jpeg" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Nextjs</h5>
+                        </div>
+                      </div>
+                </div>
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/bootstrap.jpeg" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Bootstrap</h5>
+                        </div>
+                      </div>
+                </div>
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/tailwind.png" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Tailwind Css</h5>
+                        </div>
+                      </div>
+                </div>
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/express.png" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Express Js</h5>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+
+            <h5 class="text-xl font-bold mb-8 text-center text-blue-500 mt-8">Libraries</h5>
+            <div class="flex flex-col md:flex-row justify-center md:justify-evenly items-center">
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/react.jpg" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">React</h5>
+                        </div>
+                      </div>
+                </div>
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/mongoose.jpg" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Mongoose</h5>
+                        </div>
+                      </div>
+                </div>
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/redux.png" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Redux</h5>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                  <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                      <img class="w-full h-48 object-cover bg-white" src="img_pdf/playwright.png" alt="Card image cap">
+                      <div class="p-4">
+                        <h5 class="text-3xl font-semibold mb-2 text-center ptext">Playwright</h5>
+                      </div>
+                    </div>
+              </div>
+              
+            </div>
+
+            <h5 class="text-xl font-bold mb-8 text-center text-blue-500 mt-8">Database</h5>
+            <div class="flex flex-col md:flex-row justify-center md:justify-evenly items-center">
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/mongodb.webp" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Mongodb</h5>
+                        </div>
+                      </div>
+                </div>
+               
+            </div>
+
+            <h5 class="text-xl font-bold mb-8 text-center text-blue-500 mt-8">Design</h5>
+            <div class="flex flex-col md:flex-row justify-center md:justify-evenly items-center">
+                <div class="work-card mt-4 md:mt-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+                        <img class="w-full h-48 object-cover bg-white" src="img_pdf/Figma.png" alt="Card image cap">
+                        <div class="p-4">
+                          <h5 class="text-3xl font-semibold mb-2 text-center ptext">Figma</h5>
+                        </div>
+                      </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+     <!-- Experience Section -->
+     <section class="container mx-auto py-12 px-6 fade-in" id="Experience">
+            <h2 class="text-3xl font-bold mb-8 text-center">My Experience</h2>
+        <div style="display: flex; justify-content: space-between;">
+            <h2 class="text-2xl font-bold mb-2 text-blue-500">Xten Networks</h2>
+           <h2 class="text-lg mb-2 text-gray-600"> April, 2023 - May, 2025 </h2>
+        </div>
+
+        <div class="border">
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                       <span class="text-xl text-black"> Website Development </span>               
+                    </button>
+                    </h5>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      <ul class="list-disc list-inside space-y-2 ptext">
+                        <li>Led the design and development of the official website for <strong>XTEN NETWORKS</strong>, a cybersecurity firm focused on proactive threat prevention and digital risk management.</li>
+                        <li>Engineered responsive, high-performance UI components using <strong>HTML</strong>, <strong>Tailwind CSS</strong>, and <strong>JavaScript</strong>, ensuring optimal performance across devices and browsers.</li>
+                        <li>Translated wireframes and design mockups from <strong>Figma</strong> into clean, production-ready code, aligning closely with the brand's visual identity.</li>
+                        <li>Built a structured, accessible footer featuring essential links, contact details, and resource shortcuts to support usability and SEO.</li>
+                        <li>Optimized site speed, responsiveness, and accessibility, with a strong focus on delivering seamless user experiences across desktop and mobile platforms.</li>
+                        <li>Conducted comprehensive cross-browser and functional testing to validate UI consistency, responsiveness, and performance under varied conditions.</li>
+                        <li>Worked closely with key stakeholders to ensure design choices and feature implementations aligned with strategic business objectives.</li>
+                      </ul>
+                                
+                      </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <span class="text-xl text-black"> Dashboard Development </span>               
+                    </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                      <ul class="list-disc list-inside space-y-2 ptext">
+                        <li>Engineered a dynamic <strong>Cybersecurity Threat Monitoring Dashboard</strong> to visualize real-time threat data across monitored networks, enhancing situational awareness for security teams.</li>
+                        <li>Implemented interactive <strong>charts</strong>, <strong>graphs</strong>, and a <strong>filterable data table</strong> to enable efficient threat detection, categorization, and analysis.</li>
+                        <li>Developed a robust <strong>Device Onboarding</strong> module to streamline the integration of new network devices into the monitoring system.</li>
+                        <li>Built a dedicated <strong>Policy Management</strong> interface, allowing seamless configuration and application of security policies.</li>
+                        <li>Architected the dashboard for full <strong>responsiveness</strong> and <strong>scalability</strong>, ensuring consistent performance with large datasets across all screen sizes.</li>
+                        <li>Utilized <strong>HTML</strong>, <strong>Tailwind CSS</strong>, and <strong>JavaScript</strong> to create an intuitive, high-performance UI with dynamic visualizations.</li>
+                        <li>Automated end-to-end testing workflows using the <strong>Robot Framework</strong> and its <strong>Browser library</strong> to ensure feature stability, regression coverage, and high reliability.</li>
+                        <li>Designed reusable test cases and conducted thorough cross-browser testing to validate critical dashboard functionality and user workflows.</li>
+                        <li>Optimized load times, interaction responsiveness, and UI rendering to deliver a seamless experience across modern browsers and devices.</li>
+                      </ul>
+                      
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <span class="text-xl text-black"> SaaS-Subscription Service </span>               
+                    </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                      <ul class="list-disc list-inside space-y-2 ptext">
+                        <li>
+                          Designed and developed a fully functional <strong>SaaS-based Threat Feed Subscription Platform</strong> for <strong>XTEN NETWORKS</strong>, enabling organizations to access real-time, curated threat intelligence.
+                        </li>
+                        <li>
+                          Built a modern, responsive user interface using <strong>React.js</strong> and <strong>Tailwind CSS</strong>, based on design systems and wireframes created in <strong>Figma</strong> for pixel-perfect implementation.
+                        </li>
+                        <li>
+                          Integrated <strong>Razorpay Payment Gateway</strong> to support secure, seamless subscription-based transactions, enabling users to easily upgrade plans and manage billing.
+                        </li>
+                        <li>
+                          Implemented <strong>User Authentication</strong> and session handling to manage secure access and personalized dashboard experiences for different user tiers.
+                        </li>
+                        <li>
+                          Highlighted key product features such as <strong>Real-time & Scheduled Access</strong>, <strong>Seamless Integrations</strong>, <strong>Flexible APIs</strong>, and <strong>Standard Format Support</strong> through dynamic, well-structured landing pages.
+                        </li>
+                        <li>
+                          Ensured complete <strong>responsiveness</strong>, <strong>accessibility</strong>, and <strong>cross-browser compatibility</strong> to deliver a consistent experience across all devices.
+                        </li>
+                        <li>
+                          Architected the frontend with scalability and modularity in mind, adhering to SaaS design principles to support ongoing feature development and enterprise growth.
+                        </li>
+                        <li>
+                          Collaborated closely with stakeholders and cross-functional teams to translate cybersecurity service offerings into intuitive, actionable UI components.
+                        </li>
+                      </ul>
+                      
+                      
+
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+        </div>
+    </section>
+
+
+    <!-- Blog Section -->
+    <section class="container mx-auto py-12 px-6" id="work">
+        <h2 class="text-3xl font-bold mb-8 text-center">My Work</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden relative group">
+                <a href="https://www.xtennetworks.com/" class="block">
+                    <div class="relative w-full h-full">
+                        <img src="img_pdf/website.png" alt="Blog Post" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 text-white font-bold text-xl">
+                            Click
+                        </div>
+                    </div>
+                </a>
+                <div class="p-4 flex justify-center items-center">
+                    <h3 class="text-lg font-bold text-gray-700 text-center ptext">Xten Network Website</h3>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden relative group">
+                <a href="https://webapp.xtennetworks.com/" class="block">
+                    <div class="relative w-full h-full">
+                        <img src="img_pdf/saas.png" alt="Blog Post" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 text-white font-bold text-xl">
+                            Click
+                        </div>
+                    </div>
+                </a>
+                <div class="p-4 flex justify-center items-center">
+                    <h3 class="text-lg font-bold text-gray-700 text-center ptext"> Saas</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+      <!-- Blog Section -->
+      <!-- <section class="container mx-auto py-12 px-6" id="work">
+        <h2 class="text-3xl font-bold mb-8 text-center">My Previous Work</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden relative group">
+                <a href="prevwork.html" class="block">
+                    <div class="relative w-full h-full">
+                        <img src="img_pdf/netflix1.png" alt="Blog Post" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 text-white font-bold text-xl">
+                            Click
+                        </div>
+                    </div>
+                </a>
+                <div class="p-4 flex justify-center items-center">
+                    <h3 class="text-lg font-bold text-gray-700 text-center">Netflix clone</h3>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden relative group">
+                <a href="https://anshuanand12345.github.io/PG/" class="block">
+                    <div class="relative w-full h-full">
+                        <img src="img_pdf/pg.png" alt="Blog Post" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 group-hover:opacity-100 text-white font-bold text-xl">
+                            Click
+                        </div>
+                    </div>
+                </a>
+                <div class="p-4 flex justify-center items-center">
+                    <h3 class="text-lg font-bold text-gray-700 text-center"> PG App</h3>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    
+
+    <!-- Contact Section -->
+    <section class="bg-white py-12" id="contact">
+        <div class="container mx-auto gap-8">
+            
+                <h2 class="text-3xl font-bold mb-8 text-center">Get in Touch</h2>
+               
+            
+                <div class="flex flex-col md:flex-row md:justify-between items-center md:items-start mt-2.5 md:mt-0 text-center md:text-left">
+                  <div class="mt-2.5 md:mt-0">
+                    <h3 class="text-lg font-bold flex items-center justify-center md:justify-start">
+                      <i class="fa fa-phone" style="font-size:20px"></i>
+                      <span class="ml-2">Call Me</span>
+                    </h3>
+                    <p class="text-2xl">9880627154</p>
+                  </div>
+                  <div class="mt-2.5 md:mt-0">
+                    <h3 class="text-lg font-bold flex items-center justify-center md:justify-start">
+                      <i class="fa fa-envelope" style="font-size:20px"></i>
+                      <span class="ml-2">Email</span>
+                    </h3>
+                    <a href="https://mail.google.com/mail/u/0/#inbox" class="text-2xl text-black">anshu.anand12345@gmail.com</a>
+                  </div>
+                  <div class="mt-2.5 md:mt-0">
+                    <h3 class="text-lg font-bold flex items-center justify-center md:justify-start">
+                      <i class="fa fa-map-marker" style="font-size:20px"></i>
+                      <span class="ml-2">Location</span>
+                    </h3>
+                    <p class="text-2xl">Bengaluru</p>
+                  </div>
+                </div>
+                
+
+            <div class="flex justify-center space-x-4 mt-8">
+                
+                <a href="https://www.linkedin.com/in/anshu-anand-40928783/" class="hover:text-blue-500 text-black"> <i class="fa fa-linkedin-square" style="font-size:24px"></i>
+                   <span class="ml-2">LinkedIn</span> </a>
+
+                   <a href="https://github.com/anshuanand12345" class="hover:text-blue-500 text-black"> <i class="fa fa-github" style="font-size:24px"></i>
+
+                    <span class="ml-2">Github</span> </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-6">
+        <div class="container mx-auto text-center text-white">
+            <p class="mb-4">© All Rights Reserved</p>
+          
+        </div>
+    </footer>
+
+    <script>
+      // Typewriter Effect for Hero Title
+      const typeText = "Anshu Anand";
+      const target = document.querySelector("h2 span.text-blue-500");
+      let charIndex = 0;
+      function typeWriter() {
+        if (charIndex < typeText.length) {
+          target.textContent += typeText.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, 350);
+        }
+      }
+      typeWriter();
+    
+      // Scroll Animation using IntersectionObserver
+      const fadeElements = document.querySelectorAll(".fade-in");
+    
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-6");
+          }
+        });
+      }, { threshold: 0.1 });
+    
+      fadeElements.forEach(el => {
+        el.classList.add("opacity-0", "translate-y-6", "transition-all", "duration-1000");
+        observer.observe(el);
+      });
+    
+      // Social Icon Hover Animation (Bouncy)
+      document.querySelectorAll(".fa").forEach(icon => {
+        icon.addEventListener("mouseenter", () => {
+          icon.classList.add("animate-bounce");
+        });
+        icon.addEventListener("mouseleave", () => {
+          icon.classList.remove("animate-bounce");
+        });
+      });
+    </script>
+    
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const items = document.querySelectorAll('.motion-item');
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('show');
+          }, index * 150); // stagger animation
+        });
+      });
+    </script>
+    
+    <script>
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('nav-menu');
+    
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    </script>
+
+     <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const left = document.getElementById("leftContent");
+      const right = document.getElementById("rightImage");
+
+      setTimeout(() => {
+        left.classList.remove("opacity-0", "translate-x-[-50px]");
+        left.classList.add("opacity-100", "translate-x-0");
+
+        right.classList.remove("opacity-0", "translate-x-[50px]");
+        right.classList.add("opacity-100", "translate-x-0");
+      }, 300); // delay for smoother entry
+    });
+  </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800, // Animation duration in ms
+    once: true,    // Only animate once on scroll
+  });
+</script>
+</body>
+</html>
